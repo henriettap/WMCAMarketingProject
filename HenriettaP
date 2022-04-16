@@ -1,0 +1,31 @@
+-- MARKETING DATA ANALYTICS PROJECT - SQL BY HENRIETTA PEART (WM COHORT)
+
+
+-- GROUP BY
+-- The SQL forumla here shows the amount of website visits per month by individual ID numbers out of 2240 customers.
+-- The lowest quantity of visitation is 0. The highest quantity is 20 visits per month. if shopping, this could highly
+-- average to visiting once a week minumum. 
+
+SELECT ID, SUM(NumWebVisitsMonth) AS 'Number of Web Visits Per Month' FROM Marketing.marketing_campaign 
+GROUP BY ID;
+
+-- WHERE
+-- The SQL formula here shows the marital status of single customers to locate whom visits the website including 
+-- income and education from the marketing campaign. 480 rows were returned out of 2401 results.
+
+SELECT Education, NumWebVisitsMonth, Income
+FROM Marketing.marketing_campaign
+WHERE Marital_Status = "Single";
+
+-- CASE WHEN
+-- The SQL formula here shows discovering how education status and grouping customer by educational achievements.
+-- Grouping customer by education and other education relating to the customer geographic purchase for the month. 
+
+SELECT ID,
+CASE
+WHEN Education LIKE '%g%' THEN 'Graduation'
+WHEN Education LIKE '%g%' THEN 'Masters Degree'
+WHEN Education LIKE '%p%' THEN 'PHD'
+ELSE 'Other Education'
+END AS 'Education'
+FROM Marketing.marketing_campaign;
